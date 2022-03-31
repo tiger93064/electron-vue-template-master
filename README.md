@@ -1,7 +1,7 @@
 # Electron Vue Template
 
 A simple starter template for a **Vue3** + **Electron** TypeScript based application, including **ViteJS** and **Electron Builder**.
-with `SerialPort` to communicate with system serial port, `Express.js` to provide `WebCrawler` API as local server and silent print ability.
+with `SerialPort` to communicate with system serial port, `Express.js` to provide `WebCrawler` API as local server and bring silent print ability to web-eco.
 
 ## About
 
