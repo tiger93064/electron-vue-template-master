@@ -72,36 +72,34 @@ function createWindow () {
     console.log(`Example app listening on port ${port}`)
   })
 
-
+  var c = new Crawler({ maxConnections : 10 });
   expressApp.get('/imageCrawler/:cmmdName', (req, res) => { 
-    
-    var c = new Crawler({
-      maxConnections : 10,
-      // This will be called for each crawled page
-      callback : function (error, res1, done) {
-          if(error){
-              console.log(error);
-          }
-          else{
-              var $ = res1.$;
-              // $ is Cheerio by default
-              //a lean implementation of core jQuery designed specifically for the server 
-              // console.log($('img')[1].attribs.src);
-              let crawResult = $('img')
-              if(crawResult.length > 1)  res.redirect($('img')[1].attribs.src)
-              else res.status(404).send("Sorry can't find that!")
-              // else res.status(404).send("Sorry can't find that!")
-              // res.send($('img')[1].attribs.src); 
-             
-
-            
-          }
-          done();
-      }
-    });
     console.log("crawling: "+req.params.cmmdName)
-    c.queue('https://www.google.com.tw/search?q='+encodeURIComponent(req.params.cmmdName)+'&tbm=isch');
+    c.queue([{
+      uri: 'https://www.google.com.tw/search?q='+encodeURIComponent(req.params.cmmdName)+'&tbm=isch',
+  
+      // The global callback won't be called
+      callback : function (error, res1, done) {
+        if(error){
+            console.log(error);
+        }
+        else{
+            var $ = res1.$;
+            // $ is Cheerio by default
+            //a lean implementation of core jQuery designed specifically for the server 
+            // console.log($('img')[1].attribs.src);
+            let crawResult = $('img')
+            if(crawResult.length > 1)  res.redirect($('img')[1].attribs.src)
+            else res.status(404).send("Sorry can't find that!")
+            // else res.status(404).send("Sorry can't find that!")
+            // res.send($('img')[1].attribs.src); 
+           
 
+          
+        }
+        done();
+      }
+  }]);
 
 
 
