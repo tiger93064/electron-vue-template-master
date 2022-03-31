@@ -8,10 +8,10 @@ const ipc = {
       // From render to main.
       'send': [],
       // From main to render.
-      'once': ['getPrinterList'],
+      'once': [],
       // From render to main and back again.
       'sendReceive': [],
-      'on': ['doPrint']
+      'on': ['doPrint', 'consoleInVue', 'getPrinterList']
   }
 };
 

@@ -74,7 +74,8 @@ function createWindow () {
 
   var c = new Crawler({ maxConnections : 10 });
   expressApp.get('/imageCrawler/:cmmdName', (req, res) => { 
-    console.log("crawling: "+req.params.cmmdName)
+    // console.log("crawling: "+req.params.cmmdName)
+    mainWindow.webContents.send('consoleInVue', new Date().toLocaleString()+" crawling: "+req.params.cmmdName);
     c.queue([{
       uri: 'https://www.google.com.tw/search?q='+encodeURIComponent(req.params.cmmdName)+'&tbm=isch',
   
@@ -91,8 +92,6 @@ function createWindow () {
             let crawResult = $('img')
             if(crawResult.length > 1)  res.redirect($('img')[1].attribs.src)
             else res.status(404).send("Sorry can't find that!")
-            // else res.status(404).send("Sorry can't find that!")
-            // res.send($('img')[1].attribs.src); 
            
 
           
