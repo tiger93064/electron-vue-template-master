@@ -1,7 +1,7 @@
 # Electron Vue Template
 
 A simple starter template for a **Vue3** + **Electron** TypeScript based application, including **ViteJS** and **Electron Builder**.
-with `SerialPort` to communicate with system serial port, `Express.js` to provide `WebCrawler` API as local server and bring silent print ability to web-eco.
+with `SerialPort` to communicate with system serial port, `Express.js` to provide `WebCrawler` API as local server and bring silent print ability to web-eco, `Vuetify 3 Beta` as default UI framework.
 
 ## About
 
@@ -15,7 +15,7 @@ Click the green **Use this template** button on top of the repository, and clone
 
 **Or..**
 
-Clone this repository: `git clone git@github.com:Deluze/electron-vue-template.git`
+Clone this repository: `git clone git@github.com:tiger93064/electron-vue-template-master.git`
 
 
 ### Install dependencies ⏬
@@ -78,5 +78,5 @@ const contents = FileSystem.readFileSync(path);
 
 ## Credit
 
-fork from [Deluze/electron-vue-template](https://github.com/Deluze/electron-vue-template
+forked from [Deluze/electron-vue-template](https://github.com/Deluze/electron-vue-template
 )
