@@ -20,7 +20,6 @@
       <template v-slot:append>
         <v-btn
           icon
-          color="primary"
           class="mr-4"
           @click="updateInfo"
         >
@@ -41,7 +40,6 @@
             
             <v-card
               class="mb-2"
-              max-width="300"
               v-for="(printer, index) in printers.arr"
               :key="index"
             >
@@ -77,7 +75,7 @@
           </v-col>
           <v-col md="8">
             <v-row>
-              <v-table>
+              <v-table style="width:100%">
                 <template v-slot:default>
                   <thead>
                     <tr>
@@ -134,7 +132,7 @@
       </v-container>
     </v-main>
 
-    <v-footer color="primary">
+    <v-footer color="primary" height="10px">
       <!-- -->powered by
     </v-footer>
     <!-- <hello></hello> -->
@@ -192,14 +190,18 @@ export default defineComponent({
     })
 
     ipcRenderer.send("getPrinterList");
-    ipcRenderer.once("getPrinterList", (event, data) => {
-      console.log(data);
+    ipcRenderer.on("getPrinterList", (event, data) => {
+      console.log("Printer", data);
       printers.arr = data
     });
     ipcRenderer.on("doPrint", (event, data) => {
       console.log(data);
       jobs.arr.push({ data: data, timestamp: new Date() })
 
+    });
+
+    ipcRenderer.on("consoleInVue", (event, data) => {
+      console.log(data);
     });
     const updateInfo = () => {
       ipcRenderer.send("getPrinterList");
@@ -232,6 +234,7 @@ export default defineComponent({
       // })
 
     }
+     
 
     return {
       printers, jobs, serialports, updateInfo, print
