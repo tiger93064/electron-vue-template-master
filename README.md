@@ -74,3 +74,9 @@ const Path = require('path');
 const path = Path.join(app.getAppPath(), 'static', 'yourFile.txt');
 const contents = FileSystem.readFileSync(path);
 ```
+
+
+## Credit
+
+fork from [Deluze/electron-vue-template](https://github.com/Deluze/electron-vue-template
+)
